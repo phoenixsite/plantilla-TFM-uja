@@ -1,11 +1,9 @@
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{ugrTFG}[2023/06/15 Clase de documento para TFG] %elaboraci\'on TFG en Matem\'aticas seg\'un normativa de la Universidad de Granada]
+\ProvidesClass{ujaTFT}[2025/03/14 Clase de documento para TFG y TFM] %elaboraci\'on TFG y TFM en Matem\'aticas seg\'un normativa de la Escuela Politécnica Superior de Jaén]
 
 % IMAGEN PARA LA PORTADA
-% Existen varias opciones para la imagen de fondo de la portada del TFG. Todas ellas tienen en logotipo de la universidad de Granada en la cabecera. Las opciones son las siguientes:
-% 1. portada-ugr y portada-ugr-color: diseño con marca de agua basada en el logo de la UGR (en escala de grises y color).
-% 2. portada-ugr-sencilla y portada-ugr-sencilla-color: portada únicamente con el logotipo de la UGR en la cabecera.
-\newcommand{\archivoportada}{portada-ugr}
+% portada y portada-color: carátulas obligatorias con el logotipo de la UJA (en escala de grises y color).
+\newcommand{\archivoportada}{portada-uja}
 
 
 % ===================================================================
@@ -14,7 +12,7 @@
 
 % PRINT
 \DeclareOption{print}{
-  \PassOptionsToClass{fontsize=10pt, paper=a4, twoside=true, BCOR=5mm, DIV=10}{scrbook}
+  \PassOptionsToClass{fontsize=12pt, paper=a4, twoside=false, BCOR=5mm, DIV=12}{scrbook}
 }
 
 % TABLET
@@ -25,7 +23,7 @@
 }
 
 \DeclareOption{color}{
-  \renewcommand{\archivoportada}{portada-ugr-color}
+  \renewcommand{\archivoportada}{portada-color}
   % \PassOptionsToPackage[colorlinks = true, linkcolor = [rgb]{0.5, 0, 0}, urlcolor = [rgb]{0, 0, 0.5}, citecolor = [rgb]{0, 0.5, 0}, ]{hyperref}
 }
 \ProcessOptions\relax
@@ -36,21 +34,21 @@
 % -------------------------------------------------------------------
 % PAQUETES Y OPCIONES
 % -------------------------------------------------------------------
-\RequirePackage[utf8]{inputenc} 
+\RequirePackage[utf8]{inputenc}
 
 \RequirePackage[english, spanish, es-nodecimaldot, es-noindentfirst, es-tabla,es-noquoting]{babel}
   \unaccentedoperators % Desactiva los acentos en los operadores matemáticso (p.e. \lim, \max, ...). Eliminar esta opción si queremos que vayan acentuados
 
 \RequirePackage{amsmath}
-\RequirePackage{amsthm} 
-\RequirePackage{amssymb} 
+\RequirePackage{amsthm}
+\RequirePackage{amssymb}
 \RequirePackage{mathtools}
 %   % Sólo se numeran las ecuaciones que se usan
-  \mathtoolsset{showonlyrefs=true}      
-\RequirePackage[mathscr]{eucal} 		  % Proporciona el comando 
+  \mathtoolsset{showonlyrefs=true}
+\RequirePackage[mathscr]{eucal} 		  % Proporciona el comando
 %                                       % \mathscr para fuentes de
-%                                       % tipo manuscrito en modo 
-%                                       % matemático sin sobreescribir 
+%                                       % tipo manuscrito en modo
+%                                       % matemático sin sobreescribir
 %                                       % el comando \mathcal
 
 % Teoremas y entornos asociados
@@ -70,20 +68,17 @@
 
 \RequirePackage[activate={true,nocompatibility},final,tracking=true,kerning=true,spacing=true,factor=1100,stretch=10,shrink=10]{microtype}
 
-% Las tipografías elegidas para el documento, siguiendo la guía de estilo de la UGR, son las siguientes
-% Normal font: 			URW Palladio typeface. 
-% Sans-serif font: 	Gill Sans (paquete cabin)
+% Las tipografías elegidas para el documento, siguiendo la guía de estilo de la UJA, son las siguientes
+% Normal font: 		Arial.
 % Monospace font: 	Inconsolata
 \RequirePackage[T1]{fontenc}
-\RequirePackage[sc, osf]{mathpazo} \linespread{1.05}         
-\IfFileExists{cabin.sty}{
-  \RequirePackage[scaled=.95,type1]{cabin} 
-} %else
-{
-  % Si cabin da ERROR usar el siguiente comando en su lugar
-  \renewcommand{\sfdefault}{iwona} 
-}
+\usepackage{helvet}
+\renewcommand{\familydefault}{\sfdefault}
 \RequirePackage{inconsolata}
+
+% \linespread{1.5}
+% Se establece a interlineado a 1.25 porque 1.5 parece demasiado
+\linespread{1.25}
 
 \RequirePackage{setspace}
 \RequirePackage{xspace} % Para problemas de espaciado al definir comandos
@@ -98,10 +93,11 @@
   citebordercolor=0 0.8 0,
   citebordercolor=0 0.8 0,
   colorlinks = true,            % Color en texto de los enlaces. Comentar esta línea o cambiar `true` por `false` para imprimir el documento.
-  linkcolor = [rgb]{0.5, 0, 0}, % Color de los enlaces internos
+  % linkcolor = [rgb]{0.5, 0, 0}, % Color de los enlaces internos
+  linkcolor = [rgb]{0.043, 0.306, 0.439},
   urlcolor = [rgb]{0, 0, 0.5},  % Color de los hipervínculos
   citecolor = [rgb]{0, 0.5, 0}, % Color de las referencias bibliográficas
-  pdfsubject={Trabajo de fin de Grado},%
+  pdfsubject={Trabajo Fin de Máster},%
 	pdfkeywords={},%
 	pdfcreator={pdfLaTeX},%
 }
@@ -132,7 +128,7 @@
 \RequirePackage{booktabs}
 % \renewcommand{\arraystretch}{1.5} % Aumenta el espacio vertical entre las filas de un entorno tabular
 
-\RequirePackage{xcolor} 
+\RequirePackage{xcolor}
 \RequirePackage{graphicx}
   % Carpeta donde buscar los archivos de imagen por defecto
   \graphicspath{{img/}}
@@ -162,6 +158,8 @@
 \definecolor{parameter}{rgb}{0.28,0.14,0.45}
 \definecolor{operator}{rgb}{0.67, 0.13, 1}
 \definecolor{output}{rgb}{0.03,0.4,0.03}
+
+\definecolor{titulo}{rgb}{0.094,0.514,0.725}
 
 \lstdefinestyle{ugr}{ %
   float=hbp,
@@ -225,7 +223,7 @@
 \setkomafont{disposition}{\sffamily\bfseries}
 
 % Cambia el ancho de la cita. Al inicio de un capítulo podemos usar el comando \dictum[autor]{cita} para añadir una cita famosa de un autor.
-\renewcommand{\dictumwidth}{0.45\textwidth} 
+\renewcommand{\dictumwidth}{0.45\textwidth}
 
 \recalctypearea % Necesario tras definir la tipografía a usar.
 
@@ -254,83 +252,38 @@
 
       % Para que el título esté centrado en la página.
       % Los valores numéricos deberán elegirse de acuerdo con el diseño de página (sobre todo si se cambia la opción BCOR o DIV).
-      \begin{addmargin}[2.575cm]{0cm}
-        \begin{flushleft}
+      \hfill
+      \vspace{5.5cm}
+      \begin{addmargin}[-0.5cm]{0cm}
+        \begin{center}
           \Large  
           \hfill\vfil
 
-          \large{\textsf{\miFacultad}}
+          \fontsize{16}{17}{\textsf{\textit{\miFacultad}}}
           \vfill
 
-          {\large\textsc\miGrado} \vfill
-
-
-          {\large\textsc{trabajo de fin de grado}}
-
-          \begin{flushleft}
-            \Huge
+          \begin{center}
             \setstretch{0.8}
-            \miTitulo
-          \end{flushleft}
+            \fontsize{30}{31}
+            \color{titulo}\textbf{Título}%\miTitulo}
+          \end{center}\vspace{2mm}
 
-          \vfill\vfill\vfill\vfill
+          \fontsize{16}{17}{ Autor: \miNombre}\vspace{5mm}
 
-          \textsf{\normalsize{Presentado por:}}\\
-          {\normalsize\textrm{\miNombre}} 
-          \bigskip
+          \fontsize{16}{17}{Máster: \miGrado\vspace{5mm}}
 
-          \textsf{\normalsize{Curso académico \miCurso}}
-        \end{flushleft}  
-      \end{addmargin}       
+          \fontsize{16}{17}{Director: \miTutor}
 
-    \end{titlepage}   
-    \cleardoublepage
+          \fontsize{16}{17}{Departamento del director: \miTutorDepar}
 
-    \thispagestyle{empty}
+          \vfill
 
-    \begin{center}
-      \large  
+          Fecha: \miFecha
 
-      \vspace*{\stretch{1}}
+          \vfill
+          
+        \end{center}
+      \end{addmargin}
 
-      \begingroup
-      \huge{\miTitulo} \\ \bigskip
-      \endgroup
-
-      \textrm{\miNombre}
-
-      \vspace{\stretch{5}}
-
-    \end{center}  
-
-    \newpage
-    \thispagestyle{empty}
-
-    \hfill
-
-    \vfill
-
-    \miNombre \textit{\miTitulo}.
-
-    Trabajo de fin de Grado. Curso académico \miCurso.
-    \bigskip
-
-    \begin{minipage}[t]{0.25\textwidth}
-      \flushleft
-      \textbf{Responsable de tutorización}
-    \end{minipage}
-    \begin{minipage}[t]{0.45\textwidth}
-      \flushleft
-      \miTutor
-    \end{minipage}
-    \begin{minipage}[t]{0.30\textwidth}
-      \flushright
-      \miGrado
-      \medskip
-
-      \miFacultad
-      \medskip
-
-      \miUniversidad
-    \end{minipage}
+    \end{titlepage}
   }
